@@ -11,25 +11,25 @@ const JwtTokens = sequelize.define('JwtTokens', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
 })
 
-const CarBrands = sequelize.define('carBrands', {
+const CarBrands = sequelize.define('CarBrands', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     name: {type: DataTypes.STRING, unique:true, allowNull:false},
     country: {type: DataTypes.STRING, allowNull:true},
 })
 
-const CarModels = sequelize.define('carModels', {
+const CarModels = sequelize.define('CarModels', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     name: {type: DataTypes.STRING, unique:true, allowNull:false},
     engineCapacity: {type: DataTypes.INTEGER, allowNull:false},
     age:{type:DataTypes.INTEGER, allowNull:true}
 })
 
-const TypeOfProduct = sequelize.define('typeOfProduct', {
+const TypeOfProduct = sequelize.define('TypeOfProduct', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     name: {type: DataTypes.STRING, unique:true, allowNull:false},
 })
 
-const Products = sequelize.define('products', {
+const Products = sequelize.define('Products', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     name: {type: DataTypes.STRING, unique:true, allowNull:false},
     horsepowerGain: {type: DataTypes.INTEGER, allowNull:true},
@@ -38,7 +38,7 @@ const Products = sequelize.define('products', {
     cost: {type: DataTypes.INTEGER, allowNull:false},
 })
 
-const HistoryOfOrders = sequelize.define('historyOfOrders', {
+const HistoryOfOrders = sequelize.define('HistoryOfOrders', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     date: {type: DataTypes.DATE, unique:true, allowNull:false},
 })

@@ -1,3 +1,5 @@
+const {HistoryOfOrders} = require('../models/models')
+const ApiError = require('../error/ApiError')
 class HistoryOfOrdersController{
     async create (req, res){
 

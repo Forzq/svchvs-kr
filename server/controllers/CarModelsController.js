@@ -1,6 +1,9 @@
-class carModelsController{
+const {CarModels} = require('../models/models')
+const ApiError = require('../error/ApiError')
+class CarModelsController{
     async create (req, res){
-
+        const {name, engineCapacity, age} = req.body
+        
     }
 
     async getALL(req, res) {
@@ -12,4 +15,4 @@ class carModelsController{
     }
 }
 
-module.exports = new carModelsController()
+module.exports = new CarModelsController()

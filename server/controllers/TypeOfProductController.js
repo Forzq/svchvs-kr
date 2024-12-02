@@ -1,6 +1,6 @@
 const {TypeOfProduct} = require('../models/models')
 const ApiError = require('../error/ApiError')
-class TypeOfProductsController{
+class TypeOfProductController{
     async create (req, res){
         const {name} = req.body
         const type = await TypeOfProduct.create({name})
@@ -13,8 +13,10 @@ class TypeOfProductsController{
     }
 
     async getOne(req, res) {
-        //need to write
+        const {id} = req.params
+        const type = await TypeOfProduct.findOne({where:{id}})
+        return res.json(type)
     }
 }
 
-module.exports = new TypeOfProductsController()
+module.exports = new TypeOfProductController()

@@ -41,15 +41,14 @@ const Products = sequelize.define('Products', {
 
 const HistoryOfOrders = sequelize.define('HistoryOfOrders', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
-    date: {type: DataTypes.DATE, unique:true, allowNull:false},
 })
 
 
 Users.hasOne(JwtTokens)
 JwtTokens.belongsTo(Users)
 
-HistoryOfOrders.hasMany(Users)
-Users.belongsTo(HistoryOfOrders)
+Users.hasMany(HistoryOfOrders)
+HistoryOfOrders.belongsTo(Users)
 
 CarBrands.hasMany(CarModels)
 CarModels.belongsTo(CarBrands)

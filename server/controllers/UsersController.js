@@ -6,7 +6,7 @@ const {Users, HistoryOfOrders} = require('../models/models')
 const generateJwt = (id, email, role) => {
    return jwt.sign({id, email, role},
         process.env.SECRET_KEY,
-        {expireIn: '24h'}
+        {expiresIn: '24h'}
         )
 }
 
@@ -42,11 +42,8 @@ class UsersController{
     }
 
     async check(req, res, next) {
-        const {id} = req.query
-        if(!id){
-           return next(ApiError.badRequest('Не задан id'))
-        }
-        res.json(id)
+        const token = generateJwt(req.user.id, req.user.email, user.role)
+        return res.json(token)
     }
 }
 

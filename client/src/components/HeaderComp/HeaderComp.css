@@ -3,4 +3,5 @@ header{
     justify-content: space-evenly;
     background-color: rgb(35, 37, 37);
     color: white;
+    align-items: center;
 }

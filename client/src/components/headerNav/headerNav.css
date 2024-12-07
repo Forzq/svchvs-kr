@@ -3,4 +3,8 @@
     justify-content: center;
     gap: 20%;
     white-space: nowrap;
+    align-items:  center;
+}
+Link{
+    color: white;
 }

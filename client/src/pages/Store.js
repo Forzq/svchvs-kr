@@ -1,9 +1,13 @@
 import React from 'react';
-
+import HeaderComp from '../components/HeaderComp/HeaderComp';
+import SelectBrandComp from '../components/SelectBrandComp';
+import ProductCard from '../components/productCard'
 const Store = () => {
     return (
         <div>
-            shop all at the moment
+            <HeaderComp/>
+            <SelectBrandComp/>
+            <ProductCard/>
         </div>
     );
 };

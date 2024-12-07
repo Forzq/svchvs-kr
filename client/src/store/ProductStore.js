@@ -11,6 +11,10 @@ export default class ProductStore {
             {id: 1, name: 'bmw'},
             {id: 2, name: 'audi'}
         ]
+        this._models = [
+            {id:1, name: 'e60',CarbrandId:1, img:'https://upload.wikimedia.org/wikipedia/commons/c/c5/2003_BMW_520i_SE_2.2_Front.jpg'},
+            {id:2, name: 'f10',CarbrandId:1, img:'https://upload.wikimedia.org/wikipedia/commons/c/c5/2003_BMW_520i_SE_2.2_Front.jpg'}
+        ]
         this._products = [
             {
                 id: 2,
@@ -20,7 +24,8 @@ export default class ProductStore {
                 description: "Performance chip for various Audi models. Improves horsepower and torque.",
                 cost: 499.99,
                 CarModelld: 1,  // Assuming CarModel has an ID
-                TypeOfProductId: 1 // Assuming TypeOfProduct has an ID
+                TypeOfProductId: 1 // Assuming TypeOfProduct has an ID,
+                
               },
               {
                 id: 3,
@@ -43,24 +48,36 @@ export default class ProductStore {
                 TypeOfProductId: 3
               }
         ]
+        this._selectedBrand = {}
         makeAutoObservable(this);
+
+    }
+    setSelectedBrand(brands)
+    {
+        this._selectedBrand = brands
     }
 
     setTypes(types) {
         this._typesOfTune = types;
     }
-
     setBrands(brands) {
         this._brands = brands;
     }
     setProducts(product) {
         this._products = product;
     }
+    setModels(models) {
+        this._models = models;
+    }
+
     get types(){
         return this._typesOfTune
     }
     get brands(){
         return this._brands
+    }
+    get models(){
+        return this._models
     }
     get product(){
         return this._products

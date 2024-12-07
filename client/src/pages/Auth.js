@@ -1,11 +1,12 @@
-import React from 'react';
+import AuthComp from '../components/Auth/AuthComp'
+import HeaderComp from '../components/HeaderComp/HeaderComp'
 
-const Auth = () => {
-    return (
-        <div>
-            auth
-        </div>
-    );
-};
-
-export default Auth;
+export default function Auth(){
+    return(
+        <>
+            <HeaderComp/>
+            <AuthComp />
+            
+        </>
+    )
+}

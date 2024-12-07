@@ -6,7 +6,7 @@ export default function headerNav() {
   
     return (
         <div className="headerNavigation">
-  <p>Home</p>
+  <Link  to ="/"><p>Home</p></Link>
   <p>ENGINE TUNE</p>
   <p>TRANSMISSION TUNE</p>
   <p>ALL PRODUCTS</p>

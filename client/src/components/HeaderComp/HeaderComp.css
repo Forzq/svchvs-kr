@@ -1,4 +1,6 @@
 header{
     display: flex;
     justify-content: space-evenly;
+    background-color: rgb(35, 37, 37);
+    color: white;
 }

@@ -1,0 +1,36 @@
+/* SignInComponent.css */
+.sign-in-form {
+    max-width: 400px;
+    margin: auto;
+    padding: 20px; /* Add padding for better visual spacing */
+  }
+  
+  .sign-in-title {
+    text-align: center;
+    color: teal;
+  }
+  
+  .sign-in-subtitle {
+    text-align: center;
+    margin-bottom: 16px; /* Add margin below subtitle */
+  }
+  
+  .input-field {
+    width: 100%; /* Make input fields take full width */
+    margin-bottom: 160px; /* Add margin between input fields */
+  }
+  
+  .register-link {
+    text-align: center;
+    margin-top: 16px; /* Add margin above register link */
+  }
+  
+  .login-button {
+    width: 100%;
+    background-color: black;
+    color: white; /* Set text color to white */
+}
+    .login-button:hover {
+      background-color: grey;
+    }
+  

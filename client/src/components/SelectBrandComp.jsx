@@ -28,9 +28,9 @@ export default function SelectBrandComp() {
             onChange={handleChange}
             label="Brand"
           >
-            {product.brands.map((model) => (
-              <MenuItem key={model.id} value={model.name}> {/* Установите значение для модели */}
-                {model.name} {/* Текст, отображаемый в списке */}
+            {product.carBrands.map((brand) => (
+              <MenuItem key={brand.id} value={brand.name}> 
+                {brand.name} {/* Текст, отображаемый в списке */}
               </MenuItem>
             ))}
           </Select>

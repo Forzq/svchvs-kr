@@ -1,13 +1,14 @@
 import React from 'react';
 import HeaderComp from '../components/HeaderComp/HeaderComp';
 import SelectBrandComp from '../components/SelectBrandComp';
-import ProductCard from '../components/productCard'
+
+import ProductList from '../components/ProductList/ProductList';
 const Store = () => {
     return (
         <div>
             <HeaderComp/>
             <SelectBrandComp/>
-            <ProductCard/>
+            <ProductList/>
         </div>
     );
 };

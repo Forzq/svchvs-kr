@@ -3,7 +3,7 @@ import { useContext } from 'react';
 import { useObserver } from 'mobx-react-lite';
 import { Context } from '../../index';
 import { Box } from '@mui/material';
-import ProductCard from "../productCard";
+import ProductCard from "../productCard/productCard";
 import '../ProductList/ProductList.css'
 
 export default function ProductList() {

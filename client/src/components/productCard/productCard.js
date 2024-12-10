@@ -5,8 +5,9 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import '../productCard/productCard.css'
 import { useContext } from 'react';
-import { Context } from '../index';
+import { Context } from '../../index';
 
 export default function ProductCard({ currentProduct }) {
   const { product } = useContext(Context);
@@ -23,7 +24,7 @@ export default function ProductCard({ currentProduct }) {
   console.log("Текущая модель:", bubu);
   console.log("Текущая brand:", currentBrand);
   return (
-    <Card sx={{ minWidth: 299, maxWidth:300, height:400 }}>
+    <Card className='cartochka'sx={{ minWidth: 299, maxWidth:300, height:400 }}>
       <CardContent>
 
         <img src={bubu.img} alt='fd' style={{ width: '100%' }}/>

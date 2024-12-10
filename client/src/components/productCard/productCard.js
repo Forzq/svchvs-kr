@@ -24,7 +24,7 @@ export default function ProductCard({ currentProduct }) {
   console.log("Текущая модель:", bubu);
   console.log("Текущая brand:", currentBrand);
   return (
-    <Card className='cartochka'sx={{ minWidth: 299, maxWidth:300, height:400 }}>
+    <Card className='cartochka'sx={{ minWidth: 299, maxWidth:300, height:300 }}>
       <CardContent>
 
         <img src={bubu.img} alt='fd' style={{ width: '100%' }}/>

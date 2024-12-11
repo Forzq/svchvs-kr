@@ -4,4 +4,8 @@ header{
     background-color: rgb(35, 37, 37);
     color: white;
     align-items: center;
+    z-index: 3;
+}
+.headerlogo{
+    z-index: 3;
 }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { TextField, Button, Typography, Link, Box } from '@mui/material';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
@@ -7,17 +7,37 @@ import InputAdornment from '@mui/material/InputAdornment';
 import '../Auth/Auth.css'; // Import the CSS file
 import { useLocation, NavLink } from 'react-router-dom';
 import { LOGIN_ROUTE, REGISTRATION_ROUTE } from '../../utils/consts';
+import { registration, login } from '../../http/userAPI';
+import { useObserver } from 'mobx-react-lite';
+import { Context } from '../..';
+
 
 
 
 const Auth = () => {
+    const {user} = useContext(Context)
 
     const location = useLocation()
-    console.log(location)
     const isLogin = location.pathname === LOGIN_ROUTE
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+    const click = async () =>{
+      let data;
+      
+      try {
+        if(isLogin){
+          data = await login(email, password);
+        }else{
+          data = await registration(email, password);
+        }
+        user.setUser(user)
+        user.setIsAuth(true)
+      } catch (e) {
+        alert(e.response.data.message)
+      }
+    }
+
   const [showPassword, setShowPassword] = useState(false);
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -33,7 +53,7 @@ const Auth = () => {
     console.log("Password:", password);
   };
 
-  return (
+  return useObserver(() => (
     <Box
       component="form"
       onSubmit={handleSubmit}
@@ -56,7 +76,7 @@ const Auth = () => {
         label="Email"
         variant="outlined"
         value={email}
-        onChange={(e) => setEmail(e.target.value)}
+        onChange={e => setEmail(e.target.value)}
         className="input-field"
         InputProps={{
           startAdornment: (
@@ -71,7 +91,7 @@ const Auth = () => {
         type={showPassword ? 'text' : 'password'}
         variant="outlined"
         value={password}
-        onChange={(e) => setPassword(e.target.value)}
+        onChange={e => setPassword(e.target.value)}
         className="input-field"
         InputProps={{
           endAdornment: (
@@ -104,17 +124,17 @@ const Auth = () => {
       </Typography>
         }
       {isLogin ?       
-      <Button variant="contained" type="submit" className="login-button">
+      <Button onClick={click} variant="contained" type="submit" className="login-button">
         LOGIN
       </Button>
       :
-      <Button variant="contained" type="submit" className="login-button">
+      <Button onClick={click} variant="contained" type="submit" className="login-button">
       Register
     </Button>
       }
 
     </Box>
-  );
+  ));
 };
 
 export default Auth;

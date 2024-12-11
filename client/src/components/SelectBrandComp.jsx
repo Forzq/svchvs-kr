@@ -17,7 +17,7 @@ export default function SelectBrandComp() {
   };
 
   return useObserver(() => (
-    <Box sx={{ display: 'flex', justifyContent: 'center', mt: 3 }}>
+    <Box sx={{ display: 'flex', justifyContent: 'center', mt: 3 , mb: 4}}>
       <Box sx={{ minWidth: 120, maxWidth: 130 }}>
         <FormControl fullWidth>
           <InputLabel id="demo-simple-select-label">Brand</InputLabel>

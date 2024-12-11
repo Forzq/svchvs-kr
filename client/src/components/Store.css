@@ -1,0 +1,18 @@
+.likeHeader{
+    z-index: 5;
+}
+.backImg{
+    
+         /* Фон на заднем плане */
+        top: 0;
+        left: 0;
+        width: 100%; /* Занимает всю ширину */
+       margin-top: -110px;
+        z-index: 1; /* Ниже header */
+
+}
+      
+      
+.backImg img {
+    width: 100%;
+  }

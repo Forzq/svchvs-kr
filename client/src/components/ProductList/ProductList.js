@@ -8,28 +8,30 @@ import '../ProductList/ProductList.css'
 
 export default function ProductList() {
   const { product } = useContext(Context);
-
+  console.log(product.products)
   return useObserver(() => (
     <Box className="productList"
       sx={{
         display: 'flex', 
-        flexWrap: 'wrap', // Позволяет переносить элементы на новую строку
-        gap: '1em', // Задает расстояние между карточками
-        justifyContent: 'center', // Центрирует карточки на строке
+        flexWrap: 'wrap',
+        gap: '1em',
+        justifyContent: 'center',
       }}
     >
-      {product.products.map(product => (
+      {Array.isArray(product.products) ? product.products.map(product => (
         <Box 
           key={product.id} 
           sx={{
-            flex: '1 1 calc(25% - 1em)', // Каждая карточка занимает 25% ширины (4 на строке)
-            boxSizing: 'border-box', // Учитывает отступы и границы
-            maxWidth: '25%', // Ограничивает ширину карточки
+            flex: '1 1 calc(25% - 1em)',
+            boxSizing: 'border-box',
+            maxWidth: '25%',
           }}
         >
           <ProductCard currentProduct={product} />
         </Box>
-      ))}
+      )) : (
+        <p>Нет доступных продуктов.</p> // Отображение, если массив пуст или отсутствует
+      )}
     </Box>
   ));
 }

@@ -8,11 +8,14 @@ import './Account.css'
 import { useContext } from 'react';
 import { Context } from '../..';
 import { useObserver } from 'mobx-react-lite';
+import {useNavigate } from 'react-router-dom';
+import { LOGIN_ROUTE, REGISTRATION_ROUTE } from '../../utils/consts';
 
 export default function MenuAppBar() {
 
   const {user} = useContext(Context)
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const navigate = useNavigate()
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
@@ -27,15 +30,12 @@ export default function MenuAppBar() {
   };
   const handleLogOut = () => {
     handleClose();
+    user.setUser({})
     user.setIsAuth(false);
   };
   return useObserver(() =>(
-
-
       
         <Toolbar >
-          
-           
             <div >
               <IconButton
                 size="large"
@@ -68,14 +68,12 @@ export default function MenuAppBar() {
                 </div>
                  :
                  <div className="menu">
-                 <MenuItem className='pupu' onClick={handleLogin} >Login</MenuItem>
-                 <MenuItem className='pupu' onClick={handleClose}>Register</MenuItem>
+                 <MenuItem className='pupu' onClick={() => navigate(LOGIN_ROUTE)} >Login</MenuItem>
+                 <MenuItem className='pupu' onClick={() => navigate(REGISTRATION_ROUTE)}>Register</MenuItem>
                  </div>
                 }
               </Menu>
             </div>
-          
         </Toolbar>
-      
   ));
 }

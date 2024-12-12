@@ -12,35 +12,46 @@ import { Context } from '../../index';
 export default function ProductCard({ currentProduct }) {
   const { product } = useContext(Context);
 
-  // Убедитесь, что массив carModels загружен
+  // Убедитесь, что данные загружены
   if (!product.carModels || product.carModels.length === 0) {
     console.log("Модели автомобилей не загружены");
     return <div>Загрузка моделей...</div>;
   }
 
-  // Найти конкретную модель
-  const bubu = product.carModels.find(model => model.id === currentProduct.carModelsId);
-  const currentBrand = product.carBrands.find(brand=>brand.id === bubu.carBrandsId);
-  console.log("Текущая модель:", bubu);
-  console.log("Текущая brand:", currentBrand);
-  return (
-    <Card className='cartochka'sx={{ minWidth: 299, maxWidth:300, height:300 }}>
-      <CardContent>
+  if (!currentProduct.CarModelId) {
+    console.log("CarModelId отсутствует в текущем продукте:", currentProduct);
+    return <div>Данные о модели автомобиля отсутствуют</div>;
+  }
 
-        <img src={bubu.img} alt='fd' style={{ width: '100%' }}/>
+  // Найти конкретную модель
+  const bubu = product.carModels.find(model => model.id === currentProduct.CarModelId);
+
+  if (!bubu) {
+    console.log("Модель не найдена для CarModelId:", currentProduct.CarModelId);
+    return <div>Модель автомобиля не найдена</div>;
+  }
+
+  // Найти бренд
+  const currentBrand = product.carBrands.find(brand => brand.id === bubu.CarBrandId);
+
+  console.log("Текущая модель:", bubu);
+  console.log("Текущий бренд:", currentBrand);
+
+  return (
+    <Card className='cartochka' sx={{ minWidth: 299, maxWidth: 300, height: 300 }}>
+      <CardContent>
+        <img src={process.env.REACT_APP_API_URL + bubu.img} alt='Фото автомобиля' style={{ width: '100%' }} />
         <Typography variant="h8" component="div">
-      {currentProduct ? currentProduct.name : "Товар не найден"}
-      </Typography>
-      
-        <Typography variant="h8" component="div"><b>
-        {currentBrand ? currentBrand.name : "Марка авто не найдена"}  {bubu ? bubu.name : "Модель не найдена"}
-        </b>
+          {currentProduct ? currentProduct.name : "Товар не найден"}
         </Typography>
+        <Typography variant="h8" component="div"><b>
+          {currentBrand ? currentBrand.name : "Марка авто не найдена"} {bubu ? bubu.name : "Модель не найдена"}
+        </b></Typography>
         <Typography variant="body2">
-        {currentProduct ? currentProduct.cost+'$' : "Цена авто не найдена"} <Button size="small" >Buy</Button>
+          {currentProduct ? currentProduct.cost + '$' : "Цена авто не найдена"} 
+          <Button size="small">Buy</Button>
         </Typography>
       </CardContent>
-
     </Card>
   );
 }

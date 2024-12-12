@@ -1,11 +1,22 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
+import ProductList from '../components/ProductList/ProductList';
+import { useObserver } from 'mobx-react-lite';
+
 import HeaderComp from '../components/HeaderComp/HeaderComp';
 import SelectBrandComp from '../components/SelectBrandComp';
 import '../components/Store.css';
-
-import ProductList from '../components/ProductList/ProductList';
+import { Context } from '../index';
+import { fetchBrands, fetchModels, fetchTypes, fetchProducts } from '../http/productAPI';
 const Store = () => {
-    return (
+    const {product} = useContext(Context)
+    useEffect(() => {
+        fetchTypes().then(data => product.setTypes(data))
+        fetchBrands().then(data => product.setBrands(data))
+        fetchModels().then(data => product.setModels(data))
+        fetchProducts().then(data => product.setProducts(data))
+    }, [])
+
+    return useObserver(() =>(
         <div>
             <div className='likeHeader'>
                 <HeaderComp/>
@@ -16,7 +27,7 @@ const Store = () => {
             <SelectBrandComp/>
             <ProductList/>
         </div>
-    );
+    ));
 };
 
 export default Store;

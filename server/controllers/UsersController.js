@@ -42,8 +42,13 @@ class UsersController{
     }
 
     async check(req, res, next) {
-        const token = generateJwt(req.user.id, req.user.email, user.role)
+        try {
+            const token = generateJwt(req.user.id, req.user.email, req.user.role)
         return res.json(token)
+        } catch (error) {
+            next(error)
+        }
+        
     }
 }
 

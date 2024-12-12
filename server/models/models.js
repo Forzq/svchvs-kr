@@ -20,9 +20,9 @@ const CarBrands = sequelize.define('CarBrands', {
 const CarModels = sequelize.define('CarModels', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     name: {type: DataTypes.STRING, unique:true, allowNull:false},
-    engineCapacity: {type: DataTypes.INTEGER, allowNull:false},
+    engineCapacity: {type: DataTypes.INTEGER},
     age:{type:DataTypes.INTEGER, allowNull:true},
-    img: {type: DataTypes.STRING, allowNull:true}
+    img: {type: DataTypes.STRING}
 })
 
 const TypeOfProduct = sequelize.define('TypeOfProduct', {

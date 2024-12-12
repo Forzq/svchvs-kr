@@ -5,8 +5,8 @@ import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import IconButton from '@mui/material/IconButton';
 import InputAdornment from '@mui/material/InputAdornment';
 import '../Auth/Auth.css'; // Import the CSS file
-import { useLocation, NavLink } from 'react-router-dom';
-import { LOGIN_ROUTE, REGISTRATION_ROUTE } from '../../utils/consts';
+import { useLocation, NavLink, useNavigate } from 'react-router-dom';
+import { LOGIN_ROUTE, REGISTRATION_ROUTE, SHOP_ROUTE } from '../../utils/consts';
 import { registration, login } from '../../http/userAPI';
 import { useObserver } from 'mobx-react-lite';
 import { Context } from '../..';
@@ -18,21 +18,23 @@ const Auth = () => {
     const {user} = useContext(Context)
 
     const location = useLocation()
+    const history = useNavigate()
     const isLogin = location.pathname === LOGIN_ROUTE
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
     const click = async () =>{
-      let data;
       
       try {
+        let data;
         if(isLogin){
           data = await login(email, password);
         }else{
           data = await registration(email, password);
         }
-        user.setUser(user)
-        user.setIsAuth(true)
+        user.setUser(user);
+        user.setIsAuth(true);
+        history(SHOP_ROUTE);
       } catch (e) {
         alert(e.response.data.message)
       }

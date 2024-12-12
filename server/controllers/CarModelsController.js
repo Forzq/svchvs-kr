@@ -1,6 +1,6 @@
 const {CarModels} = require('../models/models')
 const ApiError = require('../error/ApiError')
-const uuid = require('uuid')//for img or static ya hz poka(
+const uuid = require('uuid')
 const path = require('path')
 class CarModelsController{
     async create (req, res, next){

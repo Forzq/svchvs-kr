@@ -1,6 +1,8 @@
 const {Products, CarModels} = require('../models/models')
 const ApiError = require('../error/ApiError')
+
 class ProductsController{
+ 
     async create (req, res, next){
         try
         {
@@ -14,31 +16,36 @@ class ProductsController{
     }
 
     async getALL(req, res) {
-        let { CarBrandsId, TypeOfProductId, limit, page } = req.query; // Получаем CarBrandsId из query параметров
-        let products;
-        page = page || 1
-        limit = limit || 9
-        let offset = page * limit - limit
-        if(TypeOfProductId){
-            products = await Products.findAndCountAll({where:{TypeOfProductId}, limit, offset})
-        }else 
-        if (CarBrandsId) {
-            // Запрашиваем продукты с фильтрацией через связи
-            products = await Products.findAndCountAll({
-                include: {
-                    model: CarModels,
-                    where: { CarBrandId: CarBrandsId }, // Указываем фильтр по CarBrandId
-                    attributes: [] // Не включать данные CarModels в результат
-                    
-                },limit, offset
-            });
-        } else {
-            // Если фильтра нет, возвращаем все продукты
-            products = await Products.findAndCountAll(limit, offset);
-        }
-        return res.json(products)
-    }
+        let { CarBrandsId, TypeOfProductId, limit, page } = req.query;
+        page = page || 1;
+        limit = limit || 9;
+        let offset = page * limit - limit;
+        let whereClause = {}; // Создаем пустой объект where
 
+        if (TypeOfProductId) {
+            whereClause.TypeOfProductId = TypeOfProductId; // Добавляем условие по TypeOfProductId
+        }
+
+        let includeClause = null; // Инициализируем include как null
+
+        if (CarBrandsId) {
+            includeClause = {
+                model: CarModels,
+                where: { CarBrandId: CarBrandsId },
+                attributes: []
+            };
+        }
+
+
+        const products = await Products.findAll({
+            where: whereClause, // Используем whereClause
+            include: includeClause, // Используем includeClause, если он определен
+            limit, 
+            offset
+        });
+
+        return res.json(products);
+    }
     async getOne(req, res) {
         const {id} = req.params
         const product = await Products.findOne({where:{id}})
@@ -46,4 +53,4 @@ class ProductsController{
     }
 }
 
-module.exports = new ProductsController()
+module.exports = new ProductsController();

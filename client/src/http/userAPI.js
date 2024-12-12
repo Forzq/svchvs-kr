@@ -20,7 +20,10 @@ export const check = async () => {
     return jwtDecode(data.token);
     } catch (error) {
         return error
-        
     }
-    
 }
+
+export const getProfile = async () => {
+    const { data } = await $authHost.get('api/Users/profile');
+    return data; // Вернет информацию о пользователе
+};

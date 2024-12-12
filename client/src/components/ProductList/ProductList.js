@@ -4,11 +4,23 @@ import { useObserver } from 'mobx-react-lite';
 import { Context } from '../../index';
 import { Box } from '@mui/material';
 import ProductCard from "../productCard/productCard";
-import '../ProductList/ProductList.css'
+import '../ProductList/ProductList.css';
 
-export default function ProductList() {
+export default function ProductList({ selectedBrand }) {  // Получаем selectedBrand как пропс
   const { product } = useContext(Context);
-  console.log(product.products)
+
+  const filteredProducts = selectedBrand
+  ? product.products.filter(prod => {
+      // Проверяем, что carModels и CarModelId существуют
+      if (!product.carModels || !prod.CarModelId) {
+        return false; // Пропускаем продукт, если данные отсутствуют
+      }
+      const model = product.carModels.find(model => model.id === prod.CarModelId);
+      return model && product.carBrands.some(brand => brand.id === model.CarBrandId && brand.name === selectedBrand);
+    })
+  : product.products; // Если бренд не выбран, возвращаем все продукты
+
+
   return useObserver(() => (
     <Box className="productList"
       sx={{
@@ -18,7 +30,7 @@ export default function ProductList() {
         justifyContent: 'center',
       }}
     >
-      {Array.isArray(product.products) ? product.products.map(product => (
+      {Array.isArray(filteredProducts) ? filteredProducts.map(product => (
         <Box 
           key={product.id} 
           sx={{
@@ -30,7 +42,7 @@ export default function ProductList() {
           <ProductCard currentProduct={product} />
         </Box>
       )) : (
-        <p>Нет доступных продуктов.</p> // Отображение, если массив пуст или отсутствует
+        <p>Нет доступных продуктов.</p>  // Отображение, если массив пуст или отсутствует
       )}
     </Box>
   ));

@@ -1,13 +1,15 @@
 import HeaderComp from '../components/HeaderComp/HeaderComp'
-
-// import Navigation from '../../Components/Navigation/Navigation'
-// import GetStarted from '../../Components/GetStarted/GetStarted'
+import '../pages/Store.css';
 
 export default function HomePage(){
     return(
         <>
-            <HeaderComp />
-            
+            <div className='likeHeader'>
+                <HeaderComp/>
+                <div className='backImg'>
+                    <img src={process.env.REACT_APP_API_URL + 'homeimg.png'}/>
+                </div>
+            </div>
         </>
     )
 }

@@ -24,10 +24,7 @@ export default function MenuAppBar() {
   const handleClose = () => {
     setAnchorEl(null);
   };
-  const handleLogin = () => {
-    handleClose();
-    user.setIsAuth(true);
-  };
+
   const handleLogOut = () => {
     handleClose();
     user.setUser({})

@@ -50,6 +50,25 @@ class UsersController{
         }
         
     }
+
+    async getUser(req, res, next) {
+        try {
+            const userId = req.user.id; // ID пользователя, полученный из токена
+            const user = await Users.findOne({
+                where: { id: userId },
+                attributes: ['id', 'email', 'role'], // Укажите нужные поля
+            });
+    
+            if (!user) {
+                return next(ApiError.internal('Пользователь не найден'));
+            }
+    
+            return res.json(user);
+        } catch (error) {
+            next(error);
+        }
+    }
+    
 }
 
 module.exports = new UsersController()

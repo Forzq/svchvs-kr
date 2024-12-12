@@ -4,16 +4,15 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-import { useState, useContext } from 'react';
+import { useContext } from 'react';
 import { useObserver } from 'mobx-react-lite';
 import { Context } from '../index';
 
-export default function SelectBrandComp() {
-  const [selectedBrand, setSelectedBrand] = useState(''); // Хранение выбранного бренда
+export default function SelectBrandComp({ selectedBrand, setSelectedBrand }) { // Принимаем selectedBrand
   const { product } = useContext(Context);
 
   const handleChange = (event) => {
-    setSelectedBrand(event.target.value); // Обновление выбранного бренда
+    setSelectedBrand(event.target.value); // Обновляем выбранный бренд
   };
 
   return useObserver(() => (
@@ -24,7 +23,7 @@ export default function SelectBrandComp() {
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
-            value={selectedBrand} // Установка текущего значения
+            value={selectedBrand} // Устанавливаем текущее значение
             onChange={handleChange}
             label="Brand"
           >

@@ -9,7 +9,7 @@ import { useContext } from 'react';
 import { Context } from '../..';
 import { useObserver } from 'mobx-react-lite';
 import {useNavigate } from 'react-router-dom';
-import { LOGIN_ROUTE, REGISTRATION_ROUTE } from '../../utils/consts';
+import { LOGIN_ROUTE, PROFILE_ROUTE, REGISTRATION_ROUTE } from '../../utils/consts';
 
 export default function MenuAppBar() {
 
@@ -63,7 +63,7 @@ export default function MenuAppBar() {
                 onClose={handleClose}
               >{user.isAuth ?
                 <div className="menu">
-                <MenuItem className='pupu' onClick={handleClose}>Profile</MenuItem>
+                <MenuItem className='pupu' onClick={() => navigate(PROFILE_ROUTE)}>Profile</MenuItem>
                 <MenuItem className='pupu' onClick={handleLogOut}>Log out</MenuItem>
                 </div>
                  :

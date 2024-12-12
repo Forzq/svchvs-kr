@@ -4,7 +4,7 @@ import { useObserver } from 'mobx-react-lite';
 
 import HeaderComp from '../components/HeaderComp/HeaderComp';
 import SelectBrandComp from '../components/SelectBrandComp';
-import '../components/Store.css';
+import '../pages/Store.css';
 import { Context } from '../index';
 import { fetchBrands, fetchModels, fetchTypes, fetchProducts } from '../http/productAPI';
 const Store = () => {

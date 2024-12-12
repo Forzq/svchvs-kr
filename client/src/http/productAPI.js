@@ -43,3 +43,8 @@ export const fetchProducts = async () => {
     console.log("Ответ от сервера (fetchPr):", data);
     return data; 
 }
+export const fetchProduct = async (id) => {
+    const { data } = await $host.get('api/Products' + id);
+    console.log("Ответ от сервера (fetchOnePr):", data);
+    return data; 
+}

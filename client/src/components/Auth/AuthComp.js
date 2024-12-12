@@ -23,22 +23,26 @@ const Auth = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
-    const click = async () =>{
-      
+    const click = async () => {
       try {
         let data;
-        if(isLogin){
+        if (isLogin) {
           data = await login(email, password);
-        }else{
+        } else {
           data = await registration(email, password);
         }
         user.setUser(user);
         user.setIsAuth(true);
         history(SHOP_ROUTE);
       } catch (e) {
-        alert(e.response.data.message)
+        if (e.response && e.response.data) {
+          alert(e.response.data.message); // Сообщение от сервера
+        } else {
+          alert('An unexpected error occurred: ' + e.message); // Общая ошибка
+        }
       }
-    }
+    };
+    
 
   const [showPassword, setShowPassword] = useState(false);
 

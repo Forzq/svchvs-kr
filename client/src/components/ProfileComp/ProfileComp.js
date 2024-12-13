@@ -1,26 +1,38 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Box, Typography, Button, Grid, Divider } from '@mui/material';
 import { getProfile } from '../../http/userAPI';
+import jsPDF from 'jspdf';
+import autoTable from 'jspdf-autotable';
+import { Context } from '../..';
 
 const ProfileComp = () => {
-  const [userData, setUserData] = useState({}); // Храним данные пользователя
+  const [userData, setUserData] = useState({});
+  const { product } = useContext(Context); // Получение данных из контекста
 
-  // Функция для получения данных пользователя
+
   const fetchUserData = async () => {
     try {
       const data = await getProfile();
-      setUserData(data); // Сохраняем данные пользователя в состоянии
+      setUserData(data);
     } catch (error) {
       console.error('Error fetching user data:', error);
     }
   };
 
-  // Загружаем данные при монтировании компонента
   useEffect(() => {
     fetchUserData();
   }, []);
+    // Проверка на наличие данных
+    if (!product.products || product.products.length === 0) {
+      return (
+        <Box sx={{ padding: '20px', maxWidth: '800px', margin: '0 auto' }}>
+          <Typography variant="h6" color="error">
+            Нет данных для создания отчета.
+          </Typography>
+        </Box>
+      );
+    }
 
-  // Создаем массив данных для отображения
   const accountDetails = [
     { label: 'My Name:', value: userData.name || 'N/A' },
     { label: 'Email:', value: userData.email || 'N/A' },
@@ -32,7 +44,32 @@ const ProfileComp = () => {
     { label: 'Country:', value: userData.country || 'United States' },
   ];
 
+  const handleDownloadPDF = () => {
+    const pdfDoc = new jsPDF();
+    pdfDoc.text('Отчет о продажах за месяц', 20, 20);
+  
+    const firstTableColumns = [
+      { title: 'Name', dataKey: 'name' },
+      { title: 'Cost', dataKey: 'cost' },
+    ];
+  
+    // Проверьте, чтобы `product.products` был массивом объектов
+    const tableData = product.products || [];
+  
+    autoTable(pdfDoc, {
+      theme: 'grid',
+      headStyles: { fontSize: 12, fillColor: [200, 200, 200] },
+      bodyStyles: { fontSize: 10 },
+      columns: firstTableColumns,
+      body: tableData, // Данные таблицы
+    });
+  
+    pdfDoc.save('Отчет_о_продажах.pdf');
+  };
+  
+
   return (
+    
     <Box sx={{ padding: '20px', maxWidth: '800px', margin: '0 auto' }}>
       <Typography variant="h3" sx={{ marginBottom: '20px', fontWeight: 'bold' }}>
         Account
@@ -59,6 +96,9 @@ const ProfileComp = () => {
       <Box sx={{ display: 'flex', justifyContent: 'space-between', marginTop: '20px' }}>
         <Button variant="outlined" color="secondary">
           History Of Orders
+        </Button>
+        <Button onClick={handleDownloadPDF} variant="outlined" color="secondary">
+          Download report all products
         </Button>
       </Box>
     </Box>

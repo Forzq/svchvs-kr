@@ -23,12 +23,13 @@ export default function SelectBrandComp({ selectedBrand, setSelectedBrand }) { /
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
-            value={selectedBrand} // Устанавливаем текущее значение
+            value={selectedBrand}
+            //  defaultValue={selectedBrand}// Устанавливаем текущее значение
             onChange={handleChange}
             label="Brand"
           >
             {product.carBrands.map((brand) => (
-              <MenuItem key={brand.id} value={brand.name}> 
+              <MenuItem key={brand.id} value={brand.name} > 
                 {brand.name} {/* Текст, отображаемый в списке */}
               </MenuItem>
             ))}

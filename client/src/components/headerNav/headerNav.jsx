@@ -1,18 +1,14 @@
-import { color } from '@mui/system';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { SHOP_ROUTE } from '../../utils/consts';
-import '../headerNav/headerNav.css'
+import './headerNav.css';
 
-export default function headerNav() {
-
-  
+export default function HeaderNav() {
     return (
         <div className="headerNavigation">
-  <Link style ={{color:'green'}}  to ="/"><p>Home</p></Link>
-  <Link style ={{color:'green'}}  to ={SHOP_ROUTE}><p>ENGINE TUNE</p></Link>
-  <p>TRANSMISSION TUNE</p>
-  <p>ALL PRODUCTS</p>
-  </div>
-        
+            <Link to="/" className="nav-link"><p>Home</p></Link>
+            <Link to={SHOP_ROUTE} className="nav-link"><p>ENGINE TUNE</p></Link>
+            <p className="nav-item">TRANSMISSION TUNE</p>
+            <p className="nav-item">ALL PRODUCTS</p>
+        </div>
     );
-  }
+}

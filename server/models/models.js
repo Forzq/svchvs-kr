@@ -43,6 +43,7 @@ const HistoryOfOrders = sequelize.define('HistoryOfOrders', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
 })
 
+// sequelize.sync()
 
 Users.hasOne(JwtTokens)
 JwtTokens.belongsTo(Users)

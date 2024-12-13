@@ -1,11 +1,43 @@
-.headerNavigation{
+.headerNavigation {
     display: flex;
     justify-content: center;
-    gap: 20%;
+    gap: 10%;
     white-space: nowrap;
-    align-items:  center;
+    align-items: center;
+    padding: 10px 20px;
+    position: sticky;
+    top: 0;
     z-index: 5;
 }
-Link{
+
+.nav-link, .nav-item {
+    color: #fff;
+    font-size: 18px;
+    text-decoration: none;
+    position: relative;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover, .nav-item:hover {
+    color: #00ff88;
+}
+
+.nav-link::after, .nav-item::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 0;
+    height: 2px;
+    background: #00ff88;
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after, .nav-item:hover::after {
+    width: 100%;
+}
+
+Link {
     color: white;
 }

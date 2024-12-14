@@ -22,7 +22,7 @@ class UsersController{
         }
         const hashPassword = await bcrypt.hash(password, 5)
         const user = await Users.create({email, role, password: hashPassword})
-        const history = await HistoryOfOrders.create({UserId: user.id})
+        // const history = await HistoryOfOrders.create({UserId: user.id})
         const token = generateJwt(user.id, user.email, user.role)
             return res.json({token})
     }
@@ -47,8 +47,7 @@ class UsersController{
         return res.json(token)
         } catch (error) {
             next(error)
-        }
-        
+        }  
     }
 
     async getUser(req, res, next) {

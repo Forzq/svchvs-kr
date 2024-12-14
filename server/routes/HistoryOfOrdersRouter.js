@@ -1,9 +1,10 @@
-const Router = require('express')
-const router = new Router()
-const HistoryOfOrdersController = require('../controllers/HistoryOfOrdersController')
+const Router = require('express');
+const router = new Router();
+const HistoryOfOrdersController = require('../controllers/HistoryOfOrdersController');
+const authMiddleware = require('../middleware/authMiddleware');
 
-router.post('/', HistoryOfOrdersController.create)
-router.get('/', HistoryOfOrdersController.getALL)
-router.get('/:id', HistoryOfOrdersController.getOne)
+router.post('/', authMiddleware, HistoryOfOrdersController.create);
+router.get('/', authMiddleware, HistoryOfOrdersController.getAll); // Применяем middleware
+router.get('/:id', authMiddleware, HistoryOfOrdersController.getOne);
 
-module.exports = router
+module.exports = router;

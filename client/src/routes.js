@@ -2,9 +2,10 @@ import Admin from "./pages/Admin"
 import Auth from "./pages/Auth"
 import Store from "./pages/Store"
 import HomePage from "./pages/HomePage"
-import { ADMIN_ROUTE, LOGIN_ROUTE, REGISTRATION_ROUTE, SHOP_ROUTE,HOMEPAGE_ROUTE, PROFILE_ROUTE } from "./utils/consts"
+import { ADMIN_ROUTE, LOGIN_ROUTE, REGISTRATION_ROUTE, SHOP_ROUTE,HOMEPAGE_ROUTE, PROFILE_ROUTE, HISTORY_ROUTE } from "./utils/consts"
 import { Component } from "react"
 import ProfilePage from "./pages/ProfilePage"
+import HistoryList from "./components/HistoryList/HistoryList"
 
 export const authRoutes = [
     {
@@ -14,7 +15,11 @@ export const authRoutes = [
     {
         path: PROFILE_ROUTE,
         Component: ProfilePage
-    }
+    },
+    {
+        path: HISTORY_ROUTE,
+        Component: HistoryList
+    },
 ]
 export const publicRoutes = [
     {

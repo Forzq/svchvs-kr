@@ -6,15 +6,20 @@ export default class ProductStore {
         this._carBrands = []
         this._carModels = []
         this._products = []
+        this._historyOfOrders = []
         this._selectedBrand = {}
         makeAutoObservable(this);
 
     }
+
     setSelectedBrand(carBrands)
     {
         this._selectedBrand = carBrands;
     }
 
+    setHistories(HistoryOfOrders){
+        this._historyOfOrders = HistoryOfOrders;
+    }
     setTypes(types) {
         this._typesOfTune = types;
     }
@@ -39,5 +44,8 @@ export default class ProductStore {
     }
     get products(){
         return this._products
+    }
+    get HistoryOfOrders(){
+        return this._historyOfOrders
     }
 }

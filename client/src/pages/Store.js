@@ -5,7 +5,7 @@ import HeaderComp from '../components/HeaderComp/HeaderComp';
 import SelectBrandComp from '../components/SelectBrandComp';
 import '../pages/Store.css';
 import { Context } from '../index';
-import { fetchBrands, fetchModels, fetchTypes, fetchProducts } from '../http/productAPI';
+import { fetchBrands, fetchModels, fetchTypes, fetchProducts, fetchHistories } from '../http/productAPI';
 
 const Store = () => {
     const {product} = useContext(Context);
@@ -16,8 +16,9 @@ const Store = () => {
         fetchBrands().then(data => product.setBrands(data));
         fetchModels().then(data => product.setModels(data));
         fetchProducts().then(data => product.setProducts(data));
+        fetchHistories().then(data => product.setHistories(data));
     }, [product]);
-
+    console.log(product.HistoryOfOrders)
     return useObserver(() => (
         <div>
             <div className='likeHeader'>

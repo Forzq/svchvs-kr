@@ -1,7 +1,5 @@
 import '../HeaderComp/HeaderComp.css';
 import HeaderNav from '../headerNav/headerNav' 
-// import Search from "../../MUI components/Search.jsx"
-// import Account from "../../MUI components/Account.jsx"
 import { Link } from 'react-router-dom';
 import Account from "../Account/Account"
 export default function  HeaderComp(){  

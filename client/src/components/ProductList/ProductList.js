@@ -8,7 +8,7 @@ import '../ProductList/ProductList.css';
 
 export default function ProductList({ selectedBrand }) {  // Получаем selectedBrand как пропс
   const { product } = useContext(Context);
-
+  
   const filteredProducts = selectedBrand
   ? product.products.filter(prod => {
       // Проверяем, что carModels и CarModelId существуют

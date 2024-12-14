@@ -8,9 +8,48 @@ import Typography from '@mui/material/Typography';
 import '../productCard/productCard.css'
 import { useContext } from 'react';
 import { Context } from '../../index';
+import { getProfile } from '../../http/userAPI';//usestate import useeffect ne fact chyo est
+import axios from 'axios';
 
 export default function ProductCard({ currentProduct }) {
-  const { product } = useContext(Context);
+  const [userData, setUserData] = React.useState({});
+  const { product } = useContext(Context); // Получение данных из контекста
+  const token = localStorage.getItem('token');
+
+  const fetchUserData = async () => {
+    try {
+      const data = await getProfile();
+      setUserData(data);
+    } catch (error) {
+      console.error('Error fetching user data:', error);
+    }
+  };
+
+  React.useEffect(() => {
+    fetchUserData();
+  }, []);
+  const handlePost = async () => {
+    try {
+      const response = await axios.post(
+        `${process.env.REACT_APP_API_URL}api/HistoryOfOrders`,
+        { 
+          UserId: userData.id, 
+          ProductId: currentProduct.id 
+        }, // Тело запроса
+        {
+          headers: {
+            Authorization: `Bearer ${token}`, // Заголовок с токеном
+          },
+        }
+
+      );
+      alert(`Поздравляю Вас, ${userData.email} С покупкой агрегата`)
+    } catch (e) {
+      console.error('Ошибка при добавлении:', e.response ? e.response.data : e.message);
+    }
+  };
+  
+
 
   // Убедитесь, что данные загружены
   if (!product.carModels || product.carModels.length === 0) {
@@ -49,7 +88,7 @@ export default function ProductCard({ currentProduct }) {
         </b></Typography>
         <Typography variant="body2">
           {currentProduct ? currentProduct.cost + '$' : "Цена авто не найдена"} 
-          <Button size="small">Buy</Button>
+          <Button onClick={handlePost} size="small">Buy</Button>
         </Typography>
       </CardContent>
     </Card>

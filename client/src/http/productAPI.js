@@ -48,3 +48,13 @@ export const fetchProduct = async (id) => {
     console.log("Ответ от сервера (fetchOnePr):", data);
     return data; 
 }
+export const createHistory = async (hist) => {
+    const { data } = await $authHost.post('api/HistoryOfOrders', hist);
+    return data;
+}
+export const fetchHistories = async () => {
+    const token = localStorage.getItem('token');
+    const { data } = await $host.get('api/HistoryOfOrders', {headers: { Authorization: `Bearer ${token}`}});
+    console.log("Ответ от сервера (fetchHistory):", data);
+    return data; 
+}

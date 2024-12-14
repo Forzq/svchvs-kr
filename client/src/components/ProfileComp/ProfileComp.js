@@ -1,9 +1,11 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Box, Typography, Button, Grid, Divider } from '@mui/material';
 import { getProfile } from '../../http/userAPI';
+import { useLocation, NavLink, useNavigate } from 'react-router-dom';
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
 import { Context } from '../..';
+import { HISTORY_ROUTE } from '../../utils/consts';
 
 const ProfileComp = () => {
   const [userData, setUserData] = useState({});
@@ -32,6 +34,7 @@ const ProfileComp = () => {
         </Box>
       );
     }
+    console.log(userData.id)
 
   const accountDetails = [
     { label: 'My Name:', value: userData.name || 'N/A' },
@@ -94,8 +97,8 @@ const ProfileComp = () => {
       ))}
 
       <Box sx={{ display: 'flex', justifyContent: 'space-between', marginTop: '20px' }}>
-        <Button variant="outlined" color="secondary">
-          History Of Orders
+        <Button  variant="outlined" color="secondary">
+          <NavLink to={HISTORY_ROUTE}>History Of Orders</NavLink>
         </Button>
         <Button onClick={handleDownloadPDF} variant="outlined" color="secondary">
           Download report all products

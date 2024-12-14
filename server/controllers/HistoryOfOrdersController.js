@@ -12,19 +12,21 @@ class HistoryOfOrdersController{
             next(ApiError.badRequest(e.message))
         }
     }
-
-    async getALL(req, res) {
-        const {UserId} = req.query;
-        let histories;
-        if(UserId){
-            histories = await HistoryOfOrders.findAll({where:{UserId}})
-        }else{
-            histories = await HistoryOfOrders.findAll()
+    
+        async getAll(req, res, next) {
+            try {
+                const userId = req.user.id; // Берем ID из токена
+                const histories = await HistoryOfOrders.findAll({
+                    where: { UserId: userId },
+                });
+    
+                return res.json(histories);
+            } catch (error) {
+                next(ApiError.internal('Не удалось получить записи'));
+            }
         }
-        return res.json(histories)
-    }
 
-    async getOne(req, res) {
+    async getOne(req, res) {//немного бессмыслено 
         const {id} = req.params
         const history = await HistoryOfOrders.findOne({where:{id}})
         return res.json(history)

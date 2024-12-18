@@ -1,13 +1,14 @@
 import React, { useContext, useState, useEffect } from 'react';
-import ProductList from '../components/ProductList/ProductList';
+import ProductList from '../ProductList/ProductList';
 import { useObserver } from 'mobx-react-lite';
-import HeaderComp from '../components/HeaderComp/HeaderComp';
-import SelectBrandComp from '../components/SelectBrandComp';
-import '../pages/Store.css';
-import { Context } from '../index';
-import { fetchBrands, fetchModels, fetchTypes, fetchProducts} from '../http/productAPI';
+import HeaderComp from '../HeaderComp/HeaderComp';
+import SelectBrandComp from '../SelectBrandComp';
+import '../../pages/Store.css';
+import { Context } from '../../index';
+import { fetchBrands, fetchModels, fetchTypes, fetchProducts} from '../../http/productAPI';
+import EngineList from '../EngineList/EngineList';
 
-const Store = () => {
+const EngineTune = () => {
     const {product} = useContext(Context);
     const [selectedBrand, setSelectedBrand] = useState('');  // Состояние для выбранного бренда
 
@@ -17,7 +18,7 @@ const Store = () => {
         fetchModels().then(data => product.setModels(data));
         fetchProducts().then(data => product.setProducts(data));
     }, [product]);
-    console.log(product.HistoryOfOrders)
+
     return useObserver(() => (
         <div>
             <div className='likeHeader'>
@@ -27,9 +28,9 @@ const Store = () => {
                 </div>
             </div>
             <SelectBrandComp setSelectedBrand={setSelectedBrand} />  {/* Передаем setSelectedBrand */}
-            <ProductList selectedBrand={selectedBrand} />  {/* Передаем выбранный бренд в ProductList */}
+            <EngineList selectedBrand={selectedBrand} />  {/* Передаем выбранный бренд в ProductList */}
         </div>
     ));
 };
 
-export default Store;
+export default EngineTune;

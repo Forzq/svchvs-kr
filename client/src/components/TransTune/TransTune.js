@@ -1,14 +1,14 @@
 import React, { useContext, useState, useEffect } from 'react';
-import ProductList from '../ProductList/ProductList';
 import { useObserver } from 'mobx-react-lite';
 import HeaderComp from '../HeaderComp/HeaderComp';
 import SelectBrandComp from '../SelectBrandComp';
-import '../pages/Store.css';
-import { Context } from '../index';
-import { fetchBrands, fetchModels, fetchTypes, fetchProducts} from '../http/productAPI';
+import '../../pages/Store.css';
+import { Context } from '../../index';
+import { fetchBrands, fetchModels, fetchTypes, fetchProducts } from '../../http/productAPI';
+import EngineList from '../EngineList/EngineList';
 
-const TransTune = () => {
-    const {product} = useContext(Context);
+const EngineTune = () => {
+    const { product } = useContext(Context);
     const [selectedBrand, setSelectedBrand] = useState('');  // Состояние для выбранного бренда
 
     useEffect(() => {
@@ -18,18 +18,26 @@ const TransTune = () => {
         fetchProducts().then(data => product.setProducts(data));
     }, [product]);
 
+    // Сопоставляем тип с id = 2 (transmission)
+    const engineTypeId = product.types.find(type => type.id === 2)?.id;
+
+    console.log("Engine Type ID:", engineTypeId);  // Логируем id типа для фильтрации
+
     return useObserver(() => (
         <div>
             <div className='likeHeader'>
-                <HeaderComp/>
+                <HeaderComp />
                 <div className='backImg'>
-                    <img src={process.env.REACT_APP_API_URL + 'enginepage.png'}/>
+                    <img src={process.env.REACT_APP_API_URL + 'trans.png'} />
                 </div>
             </div>
             <SelectBrandComp setSelectedBrand={setSelectedBrand} />  {/* Передаем setSelectedBrand */}
-            <ProductList selectedBrand={selectedBrand} />  {/* Передаем выбранный бренд в ProductList */}
+            <EngineList 
+                selectedBrand={selectedBrand} 
+                engineTypeId={engineTypeId}  
+            />
         </div>
     ));
 };
 
-export default TransTune;
+export default EngineTune;

@@ -6,10 +6,10 @@ import { useContext, useEffect, useState } from 'react';
 import { Context } from './index';
 import { check } from './http/userAPI';
 import { fetchBrands, fetchModels, fetchProducts, fetchTypes } from './http/productAPI';
+import { jwtDecode } from 'jwt-decode';
 
 function App() {
   const {user} = useContext(Context)
-  const [loading, setLoading] = useState(true)
 
   const {product} = useContext(Context);
   const [selectedBrand, setSelectedBrand] = useState('');  // Состояние для выбранного бренда
@@ -22,12 +22,17 @@ function App() {
   }, [product]);
 
   useEffect(() => {
-        check().then(data => {
-            user.setUser(true);
-            user.setIsAuth(true);
-        }).finally(() => setLoading(false));
+    const token = localStorage.getItem('token');
+    if (token) {
+        const decodedToken = jwtDecode(token);
+        user.setUser({
+            id: decodedToken.id,
+            email: decodedToken.email,
+            role: decodedToken.role,
+        });
+        user.setIsAuth(true);
+    }
 }, []);
-
 
   return useObserver(() =>(
     <>

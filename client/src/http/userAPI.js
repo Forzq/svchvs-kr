@@ -27,3 +27,10 @@ export const getProfile = async () => {
     const { data } = await $authHost.get('api/Users/profile');
     return data; // Вернет информацию о пользователе
 };
+export const logout = async () => {
+    try {
+        localStorage.removeItem('token');
+    } catch (error) {
+        console.error("Failed to logout:", error);
+    }
+}

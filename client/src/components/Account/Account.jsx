@@ -4,7 +4,7 @@ import IconButton from '@mui/material/IconButton';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
-import './Account.css'
+import './Account.css';
 import { useContext } from 'react';
 import { Context } from '../..';
 import { useObserver } from 'mobx-react-lite';
@@ -27,7 +27,7 @@ export default function MenuAppBar() {
 
   const handleLogOut = () => {
     handleClose();
-    user.setUser({})
+    localStorage.removeItem('token')
     user.setIsAuth(false);
   };
   return useObserver(() =>(

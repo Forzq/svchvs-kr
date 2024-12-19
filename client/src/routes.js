@@ -15,18 +15,22 @@ export const authRoutes = [
         Component: Admin
     },
     {
-        path: PROFILE_ROUTE,
-        Component: ProfilePage
-    },
-    {
         path: HISTORY_ROUTE,
         Component: HistoryList
     },
+    {
+        path: PROFILE_ROUTE,
+        Component: ProfilePage
+    },    
 ]
 export const publicRoutes = [
     {
         path: ADMIN_ROUTE,
         Component: Admin
+    },
+    {
+        path: SHOP_ROUTE,
+        Component: Store
     },
     {
         path: LOGIN_ROUTE,
@@ -36,10 +40,7 @@ export const publicRoutes = [
         path: REGISTRATION_ROUTE,
         Component: Auth
     },
-    {
-        path: SHOP_ROUTE,
-        Component: Store
-    },
+
     {
     path: HOMEPAGE_ROUTE,
     Component: HomePage

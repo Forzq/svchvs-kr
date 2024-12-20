@@ -6,7 +6,7 @@ export default function  HeaderComp(){
     return(
         <header>
             <Link className='headerlogo' to ="/">
-            <img  src="http://localhost:5000/logo.png" alt="" />
+            <img  src={process.env.REACT_APP_API_URL + "logo.png"} alt="" />
             </Link>
             <HeaderNav/>               
                 <div className='Header_div'>

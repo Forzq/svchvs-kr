@@ -72,3 +72,4 @@ module.exports = {
     Products,
     HistoryOfOrders
 }
+sequelize.sync({ alter: true }); // Для обновления схемы

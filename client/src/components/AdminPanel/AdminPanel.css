@@ -1,0 +1,71 @@
+.admin-panel-container {
+    min-height: 100vh; /* Чтобы фон занимал весь экран */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('../../assets/s15admin.png'); /* Фон только для админ-панели */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    
+  }
+  
+  .admin-panel {
+    padding: 25px;
+    background-color: rgba(20, 20, 20, 0.9); /* Тёмный фон */
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.6);
+    max-width: 1200px;
+    width: 90%; /* Адаптация для экранов */
+    text-align: center;
+    backdrop-filter: blur(5px);
+    margin-top: -10%;
+  }
+  
+  .admin-title {
+    margin-bottom: 30px;
+    color: #4caf50; /* Основной цвет из хедера */
+    font-weight: bold;
+    font-size: 32px;
+    text-shadow: 0 3px 6px rgba(0, 0, 0, 0.6);
+  }
+  
+  /* Общие стили для кнопок */
+  button {
+    font-size: 16px;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    border: none;
+    color: #fff;
+    transition: transform 0.3s ease-in-out; /* Только эффект масштабирования */
+  }
+  
+  button:active {
+    transform: scale(0.95);
+  }
+  
+  /* Стили кнопок по умолчанию */
+  .MuiButton-outlined {
+    background-color: #2e2e2e; /* Тёмно-серый фон */
+    border: 1px solid #4caf50; /* Тонкий зелёный акцент */
+  }
+  
+  .MuiButton-containedPrimary {
+    background-color: #3b4d3f; /* Тёмно-зелёный */
+  }
+  
+  .MuiButton-containedSecondary {
+    background-color: #37474f; /* Тёмный серо-зелёный */
+  }
+  
+  .MuiButton-containedError {
+    background-color: #5a3c3c; /* Тёмный красно-коричневый */
+  }
+  
+  /* Эффект лёгкого подъёма при наведении */
+  button:hover {
+    transform: translateY(-2px); /* Только эффект движения */
+  }
+  

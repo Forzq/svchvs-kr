@@ -1,18 +1,19 @@
-import Admin from "./pages/Admin"
+import AdminPanel from "./components/AdminPanel/AdminPanel"
 import Auth from "./pages/Auth"
 import Store from "./pages/Store"
 import HomePage from "./pages/HomePage"
-import { ADMIN_ROUTE, LOGIN_ROUTE, REGISTRATION_ROUTE, SHOP_ROUTE,HOMEPAGE_ROUTE, PROFILE_ROUTE, HISTORY_ROUTE, ENGINE_ROUTE, TRANS_ROUTE } from "./utils/consts"
+import { ADMIN_ROUTE, LOGIN_ROUTE, REGISTRATION_ROUTE, SHOP_ROUTE,HOMEPAGE_ROUTE, PROFILE_ROUTE, HISTORY_ROUTE, ENGINE_ROUTE, TRANS_ROUTE, USERLIST_ROUTE } from "./utils/consts"
 import { Component } from "react"
 import ProfilePage from "./pages/ProfilePage"
 import HistoryList from "./components/HistoryList/HistoryList"
 import EngineTune from "./components/EngineTune/EngineTune"
 import TransTune from "./components/TransTune/TransTune"
+import UsersList from "./components/UserList/UserList"
 
 export const authRoutes = [
     {
         path: ADMIN_ROUTE,
-        Component: Admin
+        Component: AdminPanel
     },
     {
         path: HISTORY_ROUTE,
@@ -21,12 +22,12 @@ export const authRoutes = [
     {
         path: PROFILE_ROUTE,
         Component: ProfilePage
-    },    
+    },
+  
 ]
-export const publicRoutes = [
-    {
-        path: ADMIN_ROUTE,
-        Component: Admin
+export const publicRoutes = [    {
+        path: USERLIST_ROUTE,
+        Component: UsersList
     },
     {
         path: SHOP_ROUTE,

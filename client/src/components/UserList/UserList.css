@@ -1,0 +1,41 @@
+.users-list-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #1c1c1c; /* Тёмный фон */
+    padding: 20px;
+  }
+  
+  .users-list-title {
+    color: #4caf50; /* Основной цвет заголовка */
+    margin-bottom: 20px;
+    font-weight: bold;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+  }
+  
+  .users-table {
+    width: 90%;
+    max-width: 800px;
+    background-color: #2e2e2e; /* Цвет таблицы */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    border-radius: 8px;
+  }
+  
+  .MuiTableCell-root {
+    color: #f1f1f1; /* Цвет текста */
+  }
+  
+  .MuiTableCell-root:first-child {
+    border-top-left-radius: 8px;
+  }
+  
+  .MuiTableCell-root:last-child {
+    border-top-right-radius: 8px;
+  }
+  
+  .MuiTableRow-root:nth-of-type(even) {
+    background-color: #3b3b3b; /* Чередующийся цвет строк */
+  }
+  

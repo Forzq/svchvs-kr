@@ -1,25 +1,30 @@
 import React, { useState, useEffect } from 'react';
 import { Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography, Paper } from '@mui/material';
 import './UserList.css'; // Подключаем файл стилей
+import HeaderComp from '../HeaderComp/HeaderComp';
 
 export default function UsersList() {
   const [users, setUsers] = useState([]);
+  
 
   // Пример получения данных пользователей
   useEffect(() => {
-    fetch('/api/users') // Убедитесь, что '/api/users' правильный эндпоинт
-        .then((response) => {
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            return response.json();
-        })
-        .then((data) => setUsers(data))
-        .catch((error) => console.error('Ошибка при загрузке данных:', error));
+    const fetchUsers = async()=>{
+    const response = await fetch(process.env.REACT_APP_API_URL + 'api/Users') // Убедитесь, что '/api/users' правильный эндпоинт
+       
+        console.log(response)
+        const data=await response.json();
+        setUsers(data)
+
+       
+      }
+      fetchUsers()
 }, []);
 
 
   return (
+    <>
+    <HeaderComp/>
     <Box className="users-list-container">
       <Typography variant="h4" component="h1" className="users-list-title">
         Список пользователей
@@ -43,5 +48,6 @@ export default function UsersList() {
         </Table>
       </TableContainer>
     </Box>
+    </>
   );
 }

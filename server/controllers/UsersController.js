@@ -67,6 +67,15 @@ class UsersController{
             next(error);
         }
     }
+    async getUsers(req, res,next)
+    {
+        try{
+            let users=await Users.findAll()
+            return res.json(users)
+        }catch(e){
+            next(e)
+        }
+    }
     
 }
 

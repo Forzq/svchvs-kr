@@ -28,7 +28,7 @@ const EngineTune = () => {
             <div className='likeHeader'>
                 <HeaderComp />
                 <div className='backImg'>
-                    <img src={process.env.REACT_APP_API_URL + 'trans.png'} />
+                    <img src={process.env.REACT_APP_API_URL + 'transmission.jpg'} />
                 </div>
             </div>
             <SelectBrandComp setSelectedBrand={setSelectedBrand} />  {/* Передаем setSelectedBrand */}

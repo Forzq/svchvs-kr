@@ -2,14 +2,15 @@ import React, { useContext, useState, useEffect } from 'react';
 import { useObserver } from 'mobx-react-lite';
 import HeaderComp from '../HeaderComp/HeaderComp';
 import SelectBrandComp from '../SelectBrandComp';
-import '../../pages/Store.css';
+
+import '../EngineTune/EngineTune.css'
 import { Context } from '../../index';
 import { fetchBrands, fetchModels, fetchTypes, fetchProducts } from '../../http/productAPI';
-import EngineList from '../EngineList/EngineList';
+import EngineList from '../EngineList/EngineList.js';
 
 const EngineTune = () => {
     const { product } = useContext(Context);
-    const [selectedBrand, setSelectedBrand] = useState('');  // Состояние для выбранного бренда
+    const [selectedBrand, setSelectedBrand] = useState(''); // Состояние для выбранного бренда
 
     useEffect(() => {
         fetchTypes().then(data => product.setTypes(data));
@@ -21,21 +22,19 @@ const EngineTune = () => {
     // Сопоставляем тип с id = 1 (engine-tuning)
     const engineTypeId = product.types.find(type => type.id === 1)?.id;
 
-    console.log("Engine Type ID:", engineTypeId);  // Логируем id типа для фильтрации
+    console.log("Engine Type ID:", engineTypeId); // Логируем id типа для фильтрации
 
     return useObserver(() => (
         <div>
-            <div className='likeHeader'>
+            <div className="engineTune-likeHeader">
                 <HeaderComp />
-                <div className='backImg'>
-                    <img src={process.env.REACT_APP_API_URL + 'engine.png'} />
+                <div className="engineTune-backImg">
+                    <div className="engineTune-overlayText">Tune for engine</div>
+  
                 </div>
             </div>
-            <SelectBrandComp setSelectedBrand={setSelectedBrand} />  {/* Передаем setSelectedBrand */}
-            <EngineList 
-                selectedBrand={selectedBrand} 
-                engineTypeId={engineTypeId}  
-            />
+            <SelectBrandComp setSelectedBrand={setSelectedBrand} />
+            <EngineList selectedBrand={selectedBrand} engineTypeId={engineTypeId} />
         </div>
     ));
 };

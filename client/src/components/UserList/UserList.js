@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography, Paper } from '@mui/material';
+import { Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography, Paper, Button } from '@mui/material';
 import './UserList.css'; // Подключаем файл стилей
 import HeaderComp from '../HeaderComp/HeaderComp';
+import { ADMIN_ROUTE } from '../../utils/consts';
+import { Link } from 'react-router-dom';
 
 export default function UsersList() {
   const [users, setUsers] = useState([]);
@@ -47,6 +49,10 @@ export default function UsersList() {
           </TableBody>
         </Table>
       </TableContainer>
+      <Button variant='contained' sx={{mt:3}}>
+      <Link  to={ADMIN_ROUTE}>Back</Link>
+      </Button>
+      
     </Box>
     </>
   );

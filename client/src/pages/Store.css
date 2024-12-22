@@ -9,9 +9,7 @@
         width: 100%; /* Занимает всю ширину */
        margin-top: -110px;
         z-index: 1; /* Ниже header */
-
 }
-      
       
 .backImg img {
     width: 100%;

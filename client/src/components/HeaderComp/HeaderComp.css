@@ -1,11 +1,14 @@
-header{
+header {
     display: flex;
     justify-content: space-evenly;
-    background-color: rgb(35, 37, 37);
+    background-color: rgba(54, 52, 52, 0.5); /* Полупрозрачный фон */
     color: white;
     align-items: center;
-    z-index: 3;
+    
+    z-index: 5;
+    backdrop-filter: blur(8px); /* Размытие фона */
 }
-.headerlogo{
+
+.headerlogo {
     z-index: 3;
 }

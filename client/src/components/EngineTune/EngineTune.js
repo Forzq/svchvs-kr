@@ -7,6 +7,7 @@ import '../EngineTune/EngineTune.css'
 import { Context } from '../../index';
 import { fetchBrands, fetchModels, fetchTypes, fetchProducts } from '../../http/productAPI';
 import EngineList from '../EngineList/EngineList.js';
+import Footer from '../Footer/Footer.js';
 
 const EngineTune = () => {
     const { product } = useContext(Context);
@@ -35,8 +36,10 @@ const EngineTune = () => {
             </div>
             <SelectBrandComp setSelectedBrand={setSelectedBrand} />
             <EngineList selectedBrand={selectedBrand} engineTypeId={engineTypeId} />
+            <Footer/>
         </div>
     ));
+    
 };
 
 export default EngineTune;

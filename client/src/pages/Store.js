@@ -6,6 +6,7 @@ import SelectBrandComp from '../components/SelectBrandComp';
 import '../pages/Store.css';
 import { Context } from '../index';
 import { fetchBrands, fetchModels, fetchTypes, fetchProducts} from '../http/productAPI';
+import Footer from '../components/Footer/Footer';
 
 const Store = () => {
     const {product} = useContext(Context);
@@ -19,7 +20,7 @@ const Store = () => {
     }, [product]);
     console.log(product.HistoryOfOrders)
     return useObserver(() => (
-        <div>
+        <div className='homePage'>
             <div className='likeHeader'>
                 <HeaderComp/>
                 <div className='backImg'>
@@ -28,7 +29,9 @@ const Store = () => {
             </div>
             <SelectBrandComp setSelectedBrand={setSelectedBrand} />  {/* Передаем setSelectedBrand */}
             <ProductList selectedBrand={selectedBrand} />  {/* Передаем выбранный бренд в ProductList */}
+            <Footer/>
         </div>
+        
     ));
 };
 

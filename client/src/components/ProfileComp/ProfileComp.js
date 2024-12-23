@@ -6,6 +6,7 @@ import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
 import { Context } from '../..';
 import { ADMIN_ROUTE, HISTORY_ROUTE } from '../../utils/consts';
+import Footer from '../Footer/Footer';
 
 const ProfileComp = () => {
   const [userData, setUserData] = useState({});
@@ -68,7 +69,8 @@ const ProfileComp = () => {
   };
 
   return (
-    <Box sx={{ padding: '20px', maxWidth: '800px', margin: '0 auto' }}>
+    <Box sx={{display:'flex',flexDirection:'column', justifyContent:'space-between'}}>
+    <Box sx={{ padding: '20px', maxWidth: '800px', margin: '0 auto 10% auto' }}>
       <Typography variant="h3" sx={{ marginBottom: '20px', fontWeight: 'bold' }}>
         Account
       </Typography>
@@ -109,6 +111,9 @@ const ProfileComp = () => {
         </Button>
       </Box>
     </Box>
+    <Footer/>
+    </Box>
+    
   );
 };
 

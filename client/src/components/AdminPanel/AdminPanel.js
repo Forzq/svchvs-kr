@@ -3,7 +3,6 @@ import { Box, Button, Typography } from '@mui/material';
 import CreateProduct from '../../modals/CreateProduct';
 import DeleteServiceModal from '../../modals/DeleteProduct';
 import UpdateProductModal from '../../modals/UpdateProduct';
-import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
 import HomeIcon from '@mui/icons-material/Home';
 import PeopleIcon from '@mui/icons-material/People';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -12,6 +11,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import { useNavigate } from 'react-router-dom'; // Используем useNavigate для маршрутизации
 import './AdminPanel.css';
 import HeaderComp from '../HeaderComp/HeaderComp';
+import Footer from '../Footer/Footer';
 
 export default function AdminPanel() {
   const [isCreateModalOpen, setCreateModalOpen] = useState(false);
@@ -47,6 +47,7 @@ export default function AdminPanel() {
 
   return (
     <>
+    <div className='sfdgh'>
       <HeaderComp />
       <div className="admin-panel-container">
         <div className="admin-panel">
@@ -103,6 +104,8 @@ export default function AdminPanel() {
           />
           <UpdateProductModal open={isUpdateModalOpen} onClose={handleCloseUpdateModal} />
         </div>
+      </div>
+      <Footer/>
       </div>
     </>
   );

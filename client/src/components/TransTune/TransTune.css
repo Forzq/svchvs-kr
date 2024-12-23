@@ -1,0 +1,75 @@
+.likeHeader-trans{
+    z-index: 5;
+    width: 100%;
+}
+.xvbn-trans{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 800px;
+    background-image: url(../../../public/transmission.jpg);
+    background-position: center; 
+}
+.backImg-trans{
+         /* Фон на заднем плане */
+        top: 0;
+        left: 0;
+        width: 100%; /* Занимает всю ширину */
+       margin-top: -110px;
+        z-index: 1; /* Ниже header */
+        height: 100%;
+}
+/* TransTune.css */
+.transmission-page {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ensure full viewport height */
+}
+
+.transmission-header {
+    position: relative;
+    background-image: url('../../../public/transmission.jpg'); /* Correct path */
+    background-size: cover;
+    background-position: center;
+    height: 800px; /* Or any desired height */
+}
+
+.hero-image {
+    position: relative; /* For absolute positioning of text */
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 800px;
+    margin-top: -110px;
+    background-image: url(../../../public/transmission.jpg);
+    background-position: center;
+    background-blend-mode: multiply; /* необязательно, для смешивания с картинкой */
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.hero-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Center the text */
+    text-align: center;
+    color: white; /* Or any desired color */
+    z-index: 2; /* Ensure text is above the image */
+}
+
+.hero-text h1 {
+    font-size: 3em; /* Adjust font size as needed */
+    font-weight: bold;
+}
+
+
+.footer {
+    margin-top: auto; /* Push footer to bottom */
+}
+
+
+/* Remove old, unnecessary styles */
+.xvbn-trans, .likeHeader-trans, .backImg-trans {
+    display: none; /* Or remove these classes entirely */
+}

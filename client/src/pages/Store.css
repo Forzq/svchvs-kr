@@ -1,16 +1,67 @@
-.likeHeader{
-    z-index: 5;
+/* Store.css */
+
+.home-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 120vh; /* Ensure the page takes up full viewport height */
+    background-image: url('../../public/homeimg.png');
+    background-size: cover; /* Or contain, depending on desired effect */
+    background-position: center;
 }
 .backImg{
-    
-         /* Фон на заднем плане */
-        top: 0;
-        left: 0;
-        width: 100%; /* Занимает всю ширину */
-       margin-top: -110px;
-        z-index: 1; /* Ниже header */
+    display: flex;
+    flex-direction: column;
+
+
+    background-size: cover; /* Or contain, depending on desired effect */
+    background-position: center;
+    overflow-x: hidden;
 }
-      
-.backImg img {
+
+.hero-image-container {
+    position: relative; /* For positioning the content */
     width: 100%;
-  }
+    height: calc(100vh - 110px); /* Adjust height based on header height */
+    overflow: hidden; /* Hide overflowing image if necessary */
+}
+
+
+.hero-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Center the content */
+    text-align: center;
+    color: white; /* Or any desired color */
+    z-index: 2; /* Ensure text is above the image */
+}
+
+.hero-title {
+    font-size: 3em; /* Adjust as needed */
+    font-weight: bold;
+    margin-bottom: 0.5em;
+    color: #14f555; /* Match the original color */
+}
+
+.hero-subtitle {
+    font-size: 1.2em; /* Adjust as needed */
+    margin-bottom: 1em;
+    color: white;
+}
+
+.discover-button {
+    background-color: #14f555; /* Match the original color */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+
+.footer {
+    /* Footer styles */
+    margin-top: auto; /* Push footer to the bottom */
+}

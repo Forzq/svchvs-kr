@@ -6,3 +6,6 @@
   .cartochka:hover {
     transform: scale(1.07); /* Увеличение на 5% */
   }
+  .linkCard{
+    text-decoration: none;
+  }

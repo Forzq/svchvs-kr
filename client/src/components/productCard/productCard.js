@@ -1,8 +1,7 @@
 import * as React from 'react'; 
-import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
+import { Link } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import '../productCard/productCard.css'
@@ -12,44 +11,8 @@ import { getProfile } from '../../http/userAPI';//usestate import useeffect ne f
 import axios from 'axios';
 
 export default function ProductCard({ currentProduct }) {
-  const [userData, setUserData] = React.useState({});
   const { product } = useContext(Context); // Получение данных из контекста
-  const token = localStorage.getItem('token');
-
-  const fetchUserData = async () => {
-    try {
-      const data = await getProfile();
-      setUserData(data);
-    } catch (error) {
-      console.error('Error fetching user data:', error);
-    }
-  };
-
-  React.useEffect(() => {
-    fetchUserData();
-  }, []);
-  const handlePost = async () => {
-    try {
-      const response = await axios.post(
-        `${process.env.REACT_APP_API_URL}api/HistoryOfOrders`,
-        { 
-          UserId: userData.id, 
-          ProductId: currentProduct.id 
-        }, // Тело запроса
-        {
-          headers: {
-            Authorization: `Bearer ${token}`, // Заголовок с токеном
-          },
-        }
-
-      );
-      alert(`Поздравляю Вас, ${userData.email} С покупкой агрегата`)
-    } catch (e) {
-      console.error('Ошибка при добавлении:', e.response ? e.response.data : e.message);
-    }
-  };
-  
-
+  console.log(product)
 
   // Убедитесь, что данные загружены
   if (!product.carModels || product.carModels.length === 0) {
@@ -76,10 +39,11 @@ export default function ProductCard({ currentProduct }) {
   console.log("Текущая модель:", bubu);
   console.log("Текущий бренд:", currentBrand);
 
-  return (
+  return (<Link className='linkCard'  to={`/productpage/${currentProduct.id}`}>
     <Card className='cartochka' sx={{ minWidth: 299, maxWidth: 300, height: 300 }}>
-      <CardContent>
-        <img src={process.env.REACT_APP_API_URL + bubu.img} alt='Фото автомобиля' style={{ width: '100%' }} />
+      <img src={process.env.REACT_APP_API_URL + bubu.img} alt='Фото автомобиля' style={{ width: '100%' }} />
+      <CardContent sx={{ml:3}}>
+        
         <Typography variant="h8" component="div">
           {currentProduct ? currentProduct.name : "Товар не найден"}
         </Typography>
@@ -88,9 +52,12 @@ export default function ProductCard({ currentProduct }) {
         </b></Typography>
         <Typography variant="body2">
           {currentProduct ? currentProduct.cost + '$' : "Цена авто не найдена"} 
-          <Button onClick={handlePost} size="small">Buy</Button>
+
+          {/* onClick={handlePost} относится к кнопке ниже, для добавления заказа в хистори*/}
+          <Button  size="small">Buy</Button>
         </Typography>
       </CardContent>
     </Card>
+    </Link>
   );
 }

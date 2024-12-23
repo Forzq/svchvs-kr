@@ -7,6 +7,7 @@ import '../ProductList/ProductList.css';
 import HistoryItem from '../HistoryItem/HistoryItem';
 import HeaderComp from '../HeaderComp/HeaderComp';
 import { fetchHistories } from '../../http/productAPI';
+import Footer from '../Footer/Footer';
 
 export default function HistoryList() {  
   const { product } = useContext(Context);
@@ -57,6 +58,7 @@ export default function HistoryList() {
         )}
       </Box>
       </Box>
+      <Footer/>
     </>
   ));
 }

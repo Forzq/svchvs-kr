@@ -12,11 +12,10 @@
 .backImg{
     display: flex;
     flex-direction: column;
-
-
     background-size: cover; /* Or contain, depending on desired effect */
     background-position: center;
     overflow-x: hidden;
+    margin-top: -110px;
 }
 
 .hero-image-container {

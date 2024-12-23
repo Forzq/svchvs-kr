@@ -21,11 +21,11 @@ export default function Footer() {
 
             <Box sx={{ display: "flex", alignItems: "center", marginBottom: '1em' }}>
                 <img src={tg} alt="" />
-                <Link to="/" style={{ color: "white", marginLeft: "1em", fontSize: "24px", fontWeight: "500" }}>Telegram</Link>
+                <Link to='https://t.me/forzq' style={{ color: "white", marginLeft: "1em", fontSize: "24px", fontWeight: "500" }}>Telegram</Link>
             </Box>
             <Box sx={{ display: "flex", alignItems: "center", color: "white" }}>
                 <img src={gh} alt="" />
-                <Link to="/" style={{ color: "white", marginLeft: "1em", fontSize: "24px", fontWeight: "500" }}>Github</Link>
+                <Link to='https://github.com/Forzq' style={{ color: "white", marginLeft: "1em", fontSize: "24px", fontWeight: "500" }}>Github</Link>
             </Box>
         </footer>
     )

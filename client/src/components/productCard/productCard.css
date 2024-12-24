@@ -2,7 +2,7 @@
     transition: transform 0.9s ease;
     opacity: 1; /* Начальная непрозрачность */
   }
-  
+
   .cartochka:hover {
     transform: scale(1.07); /* Увеличение на 5% */
   }
